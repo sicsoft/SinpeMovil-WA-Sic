@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SinpeMovil_PruebasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bancos">
+          <Key>
+            <PropertyRef Name="CodBanco" />
+          </Key>
+          <Property Name="CodBanco" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="NombreBanco" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ActivaPrincipal" Type="bit" Nullable="false" />
+          <Property Name="TelefonoSinpe" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BitacoraGeneral">
+          <Key>
+            <PropertyRef Name="IdBitacora" />
+          </Key>
+          <Property Name="IdBitacora" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodComercio" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="TipoBitacora" Type="smallint" Nullable="false" />
+          <Property Name="IP" Type="varchar" MaxLength="25" />
+          <Property Name="FechaRegistro" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BitacoraIngreso">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodComercio" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BitacoraPagos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodComercio" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
+          <Property Name="CodBanco" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="MontoPago" Type="money" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="10" />
+          <Property Name="Ip" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Comercios">
+          <Key>
+            <PropertyRef Name="CodComercio" />
+          </Key>
+          <Property Name="CodComercio" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="NombreComercio" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NombreEncargado" Type="varchar" MaxLength="50" />
+          <Property Name="Telefono" Type="varchar" MaxLength="10" />
+          <Property Name="TelefonoSinpe" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Provincia" Type="char" MaxLength="2" />
+          <Property Name="Canton" Type="char" MaxLength="2" />
+          <Property Name="Distrito" Type="char" MaxLength="2" />
+          <Property Name="CantidadVisitas" Type="int" />
+          <Property Name="Logo" Type="varchar" MaxLength="50" />
+          <Property Name="TipoPlan" Type="char" MaxLength="1" />
+          <Property Name="FacturaElectronica" Type="bit" />
+          <Property Name="TipoCedula" Type="char" MaxLength="1" />
+          <Property Name="NumeroCedula" Type="char" MaxLength="20" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="50" />
+          <Property Name="CorreoFE" Type="varchar" MaxLength="100" />
+          <Property Name="FechaVence" Type="date" />
+          <Property Name="CodVendedor" Type="char" MaxLength="2" />
+          <Property Name="TipoComercio" Type="smallint" />
+          <Property Name="FechaRegistro" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Vendedores">
+          <Key>
+            <PropertyRef Name="CodVendedor" />
+          </Key>
+          <Property Name="CodVendedor" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="NomVendedor" Type="varchar" MaxLength="50" />
+          <Property Name="TelefonoSinpe" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityContainer Name="SinpeMovil_PruebasModelStoreContainer">
+          <EntitySet Name="Bancos" EntityType="Self.Bancos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BitacoraGeneral" EntityType="Self.BitacoraGeneral" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BitacoraIngreso" EntityType="Self.BitacoraIngreso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BitacoraPagos" EntityType="Self.BitacoraPagos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comercios" EntityType="Self.Comercios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vendedores" EntityType="Self.Vendedores" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SinpeMovil_PruebasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bancos">
+          <Key>
+            <PropertyRef Name="CodBanco" />
+          </Key>
+          <Property Name="CodBanco" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NombreBanco" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ActivaPrincipal" Type="Boolean" Nullable="false" />
+          <Property Name="TelefonoSinpe" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BitacoraGeneral">
+          <Key>
+            <PropertyRef Name="IdBitacora" />
+          </Key>
+          <Property Name="IdBitacora" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodComercio" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoBitacora" Type="Int16" Nullable="false" />
+          <Property Name="IP" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="BitacoraIngreso">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodComercio" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="BitacoraPagos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodComercio" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CodBanco" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MontoPago" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Ip" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Comercios">
+          <Key>
+            <PropertyRef Name="CodComercio" />
+          </Key>
+          <Property Name="CodComercio" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NombreComercio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NombreEncargado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoSinpe" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Provincia" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Canton" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Distrito" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="CantidadVisitas" Type="Int32" />
+          <Property Name="Logo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TipoPlan" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FacturaElectronica" Type="Boolean" />
+          <Property Name="TipoCedula" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="NumeroCedula" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="RazonSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoFE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaVence" Type="DateTime" Precision="0" />
+          <Property Name="CodVendedor" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="TipoComercio" Type="Int16" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Vendedores">
+          <Key>
+            <PropertyRef Name="CodVendedor" />
+          </Key>
+          <Property Name="CodVendedor" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NomVendedor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TelefonoSinpe" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="SinpeMovilPruebasEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bancos" EntityType="Self.Bancos" />
+          <EntitySet Name="BitacoraGeneral" EntityType="Self.BitacoraGeneral" />
+          <EntitySet Name="BitacoraIngreso" EntityType="Self.BitacoraIngreso" />
+          <EntitySet Name="BitacoraPagos" EntityType="Self.BitacoraPagos" />
+          <EntitySet Name="Comercios" EntityType="Self.Comercios" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Vendedores" EntityType="Self.Vendedores" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SinpeMovil_PruebasModelStoreContainer" CdmEntityContainer="SinpeMovilPruebasEntities">
+          <EntitySetMapping Name="Bancos">
+            <EntityTypeMapping TypeName="SinpeMovil_PruebasModel.Bancos">
+              <MappingFragment StoreEntitySet="Bancos">
+                <ScalarProperty Name="CodBanco" ColumnName="CodBanco" />
+                <ScalarProperty Name="NombreBanco" ColumnName="NombreBanco" />
+                <ScalarProperty Name="ActivaPrincipal" ColumnName="ActivaPrincipal" />
+                <ScalarProperty Name="TelefonoSinpe" ColumnName="TelefonoSinpe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BitacoraGeneral">
+            <EntityTypeMapping TypeName="SinpeMovil_PruebasModel.BitacoraGeneral">
+              <MappingFragment StoreEntitySet="BitacoraGeneral">
+                <ScalarProperty Name="IdBitacora" ColumnName="IdBitacora" />
+                <ScalarProperty Name="CodComercio" ColumnName="CodComercio" />
+                <ScalarProperty Name="TipoBitacora" ColumnName="TipoBitacora" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BitacoraIngreso">
+            <EntityTypeMapping TypeName="SinpeMovil_PruebasModel.BitacoraIngreso">
+              <MappingFragment StoreEntitySet="BitacoraIngreso">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="CodComercio" ColumnName="CodComercio" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BitacoraPagos">
+            <EntityTypeMapping TypeName="SinpeMovil_PruebasModel.BitacoraPagos">
+              <MappingFragment StoreEntitySet="BitacoraPagos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="CodComercio" ColumnName="CodComercio" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="CodBanco" ColumnName="CodBanco" />
+                <ScalarProperty Name="MontoPago" ColumnName="MontoPago" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Ip" ColumnName="Ip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comercios">
+            <EntityTypeMapping TypeName="SinpeMovil_PruebasModel.Comercios">
+              <MappingFragment StoreEntitySet="Comercios">
+                <ScalarProperty Name="CodComercio" ColumnName="CodComercio" />
+                <ScalarProperty Name="NombreComercio" ColumnName="NombreComercio" />
+                <ScalarProperty Name="NombreEncargado" ColumnName="NombreEncargado" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="TelefonoSinpe" ColumnName="TelefonoSinpe" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="Canton" ColumnName="Canton" />
+                <ScalarProperty Name="Distrito" ColumnName="Distrito" />
+                <ScalarProperty Name="CantidadVisitas" ColumnName="CantidadVisitas" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="TipoPlan" ColumnName="TipoPlan" />
+                <ScalarProperty Name="FacturaElectronica" ColumnName="FacturaElectronica" />
+                <ScalarProperty Name="TipoCedula" ColumnName="TipoCedula" />
+                <ScalarProperty Name="NumeroCedula" ColumnName="NumeroCedula" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="CorreoFE" ColumnName="CorreoFE" />
+                <ScalarProperty Name="FechaVence" ColumnName="FechaVence" />
+                <ScalarProperty Name="CodVendedor" ColumnName="CodVendedor" />
+                <ScalarProperty Name="TipoComercio" ColumnName="TipoComercio" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SinpeMovil_PruebasModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vendedores">
+            <EntityTypeMapping TypeName="SinpeMovil_PruebasModel.Vendedores">
+              <MappingFragment StoreEntitySet="Vendedores">
+                <ScalarProperty Name="CodVendedor" ColumnName="CodVendedor" />
+                <ScalarProperty Name="NomVendedor" ColumnName="NomVendedor" />
+                <ScalarProperty Name="TelefonoSinpe" ColumnName="TelefonoSinpe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
